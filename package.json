@@ -1,0 +1,24 @@
+{
+  "name": "blog_nodejs",
+  "version": "1.0.0",
+  "description": "It is a minimalistic blog web application where user can create, delete and post their blogs. It uses Nodejs for server side rendering",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rishabh-D/Nodejs_requests_responses.git"
+  },
+  "author": "Rishabh Dubey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rishabh-D/Nodejs_requests_responses/issues"
+  },
+  "homepage": "https://github.com/Rishabh-D/Nodejs_requests_responses#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
