@@ -14,6 +14,8 @@ app.listen(port, host, () => {
   console.log(`listening at ${host}` + ":\\" + `${port}`);
 });
 
+app.use(express.static("public"));
+
 //serving, routing
 
 app.get("/", (req, res) => {
