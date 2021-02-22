@@ -92,3 +92,9 @@ textarea {
   font-size: 1.2em;
   cursor: pointer;
 }
+
+.blog-data {
+  border-bottom: 2px solid crimson;
+  margin: 10px auto;
+  max-width: 50%;
+}

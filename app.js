@@ -1,20 +1,48 @@
 const express = require("express");
-
+const mongoose = require("mongoose");
+const Blog = require("./models/blog");
 const app = express();
 
+//listening for requests
+port = 8080;
+host = "127.0.0.1";
 // registering view engine for express
 
 app.set("view engine", "ejs");
 app.set("views", "pages");
 
-//listening for requests
-port = 8080;
-host = "127.0.0.1";
-app.listen(port, host, () => {
-  console.log(`listening at ${host}` + ":\\" + `${port}`);
-});
-
 app.use(express.static("public"));
+//connection string for mongoDb
+const dbURI =
+  "mongodb+srv://Rishabh:Fg8r42YovE01PZjp@cluster0.9vvbp.mongodb.net/node_finance?retryWrites=true&w=majority";
+
+//the object { useNewUrlParser: true, useUnifiedTopology: true } will remove deprecation warning
+// server will listen only after connection is established
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) => {
+    //listening for requests
+    app.listen(port, host, () => {
+      console.log(`listening at ${host}` + ":\\" + `${port}`);
+    });
+  })
+  .catch((err) => console.log("error connecting to db", err));
+
+//database:
+app.get("/add-blog", (req, res) => {
+  const blog = new Blog({
+    title: "new blog",
+    snippet: "about my new blog",
+    body: "about my new blog few lines more",
+  });
+
+  blog
+    .save()
+    .then((result) => res.send(result))
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //serving, routing
 
@@ -24,7 +52,11 @@ app.get("/", (req, res) => {
   //   res.sendFile("./pages/index.html", { root: __dirname });
 
   //rendering view
-  res.render("index", { title: "Home" });
+  //if someone visits home page, then display all the blogs,
+  //fetching all the blogs can be done in all-blogs route, sp just redurect user to it
+
+  // res.render("index", { title: "Home" });
+  res.redirect("/blogs");
 });
 
 app.get("/about", (req, res) => {
@@ -36,7 +68,17 @@ app.get("/about-us", (req, res) => {
   res.redirect("/about");
 });
 
-app.get("/create", (req, res) => {
+app.get("/blogs", (req, res) => {
+  Blog.find()
+    .then((result) => {
+      res.render("index", { title: "All Blogs", blogs: result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Add blogs" });
 });
 

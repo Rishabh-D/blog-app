@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 
 <html>
-    <!---include head here--->
-    <%- include('./partials/head.ejs') %>
+<!---include head here--->
+<%- include('./partials/head.ejs') %>
+
     <body>
         <!-- add nav.ejs -->
         <%- include('./partials/nav.ejs')%>
-        <div class='about content'>
-            <h2>All Blogs</h2>
-        </div>
-        
-        
-        
+            <div class='about content'>
+                <h2>All Blogs</h2>
+                <% if (blogs.length> 0) { %>
+                    <% blogs.forEach(blog=> { %>
+                        <div class='blog-data'>
+                            <h3 class="title">
+                                <%= blog.title %>
+                            </h3>
+                            <p class="snippet">
+                                <%= blog.snippet %>
+                            </p>
+                        </div>
+                        <% }) %>
+                            <% } else { %>
+                                <p>No blogs to display...</p>
+                                <% } %>
+
+            </div>
+
+
+
     </body>
+
 </html>
