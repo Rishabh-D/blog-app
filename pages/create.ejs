@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link rel="stylesheet" href=""> -->
-    </head>
+    <!---include head here--->
+    <%- include('./partials/head.ejs') %>
     <body>
-        <nav>
-            <div class='site-title'>
-                <a href='/'><h1>Blog Finance</h1></a>
-                <p>Finance made easy</p>
-            </div>
-            <ul>
-                <li><a href="/">Blogs</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/blogs/create">New Blog</a></li>
-            </ul>
-        </nav>
+        <!-- add nav.ejs -->
+        <%- include('./partials/nav.ejs')%>
 
         <div class="create-blog content">
             <form>

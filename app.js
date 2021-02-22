@@ -22,11 +22,11 @@ app.get("/", (req, res) => {
   //   res.sendFile("./pages/index.html", { root: __dirname });
 
   //rendering view
-  res.render("index");
+  res.render("index", { title: "Home" });
 });
 
 app.get("/about", (req, res) => {
-  res.render("about");
+  res.render("about", { title: "About" });
 });
 
 // if user accidently types `about-us` insted of `about` in the url then we redirect him {res.redirect('/validUrl')}
@@ -35,11 +35,11 @@ app.get("/about-us", (req, res) => {
 });
 
 app.get("/create", (req, res) => {
-  res.render("create");
+  res.render("create", { title: "Add blogs" });
 });
 
-// 404, krrp this line at the end always
+// 404, keep this line at the end always
 app.use((req, res) => {
   res.status(404);
-  res.render("notFound404");
+  res.render("notFound404", { title: "Error 404" });
 });
