@@ -12,6 +12,7 @@ app.set("view engine", "ejs");
 app.set("views", "pages");
 
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 //connection string for mongoDb
 const dbURI =
   "mongodb+srv://Rishabh:Fg8r42YovE01PZjp@cluster0.9vvbp.mongodb.net/node_finance?retryWrites=true&w=majority";
@@ -29,20 +30,20 @@ mongoose
   .catch((err) => console.log("error connecting to db", err));
 
 //database:
-app.get("/add-blog", (req, res) => {
-  const blog = new Blog({
-    title: "new blog",
-    snippet: "about my new blog",
-    body: "about my new blog few lines more",
-  });
+// app.get("/add-blog", (req, res) => {
+//   const blog = new Blog({
+//     title: "new blog",
+//     snippet: "about my new blog",
+//     body: "about my new blog few lines more",
+//   });
 
-  blog
-    .save()
-    .then((result) => res.send(result))
-    .catch((err) => {
-      console.log(err);
-    });
-});
+//   blog
+//     .save()
+//     .then((result) => res.send(result))
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
 
 //serving, routing
 
@@ -68,6 +69,10 @@ app.get("/about-us", (req, res) => {
   res.redirect("/about");
 });
 
+app.get("/blogs/create", (req, res) => {
+  res.render("create", { title: "Add blogs" });
+});
+
 app.get("/blogs", (req, res) => {
   Blog.find()
     .then((result) => {
@@ -78,8 +83,35 @@ app.get("/blogs", (req, res) => {
     });
 });
 
-app.get("/blogs/create", (req, res) => {
-  res.render("create", { title: "Add blogs" });
+app.post("/blogs", (req, res) => {
+  const blog = new Blog(req.body);
+  blog
+    .save()
+    .then((result) => res.redirect("/blogs"))
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) =>
+      res.render("details", { blog: result, title: "Blog Details" })
+    )
+    .catch((err) => console.log(err));
+});
+
+app.delete("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // 404, keep this line at the end always
