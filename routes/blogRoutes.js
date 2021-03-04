@@ -1,5 +1,5 @@
 const express = require("express");
-router = express.Router();
+const router = express.Router();
 const blogController = require("../controllers/blogController");
 
 router.get("/create", blogController.blog_create_get); //   localhost:8080//blogs/create

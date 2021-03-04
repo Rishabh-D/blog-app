@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"); /*for delete icon*/
 body {
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 20px;
   font-family: "Noto Serif", serif;
   max-width: 1200px;
+  background: #fafafa;
 }
 p,
 h1,
@@ -88,7 +89,7 @@ h3 {
 }
 .delete:hover {
   cursor: pointer;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 3px 4px 5px rgba(0, 0, 0, 0.1);
   background-color: red;
   color: white;
 }
@@ -101,9 +102,11 @@ h3 {
 .create-blog input,
 .create-blog textarea {
   display: block;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1em;
   width: 100%;
-  margin: 10px 0;
-  padding: 8px;
 }
 .create-blog label {
   display: block;
@@ -120,4 +123,44 @@ textarea {
   border: 0;
   font-size: 1.2em;
   cursor: pointer;
+  border-radius: 4px;
+}
+
+/* formss */
+form h2 {
+  font-size: 2.4em;
+  font-weight: 900;
+  margin-bottom: 40px;
+}
+
+form {
+  width: 360px;
+  margin: 0 auto;
+  padding: 30px;
+  box-shadow: 2px 3px 4px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: white;
+}
+
+.sign input {
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  width: 100%;
+}
+.sign label {
+  display: block;
+  margin: 20px 0 10px;
+}
+
+.sign button {
+  margin-top: 20px;
+  background: crimson;
+  color: white;
+  padding: 6px;
+  border: 0;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 4px;
 }

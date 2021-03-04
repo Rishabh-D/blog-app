@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const blogRoutes = require("./routes/blogRoutes");
-
+const authRoutes = require("./routes/authRoutes");
 //listening for requests
 port = 8080;
 host = "127.0.0.1";
@@ -13,12 +13,14 @@ app.set("views", "pages");
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true })); //to parse data as string/array
+app.use(express.json()); //parse json data as js array
 //connection string for mongoDb
 const dbURI =
-  "mongodb+srv://Rishabh:Fg8r42YovE01PZjp@cluster0.9vvbp.mongodb.net/node_finance?retryWrites=true&w=majority";
+  "mongodb+srv://Rishabh:Fg8r42YovE01PZjp@cluster0.9vvbp.mongodb.net/node_finance";
 
 //the object { useNewUrlParser: true, useUnifiedTopology: true } will remove deprecation warning
 // server will listen only after connection is established
+
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
@@ -73,6 +75,9 @@ app.get("/about-us", (req, res) => {
 
 // all blog routes will be handled by blogRoutes
 app.use("/blogs", blogRoutes);
+// all auth routes will be handled by blogRoutes
+console.log("here");
+app.use(authRoutes);
 
 // 404, keep this line at the end always
 app.use((req, res) => {

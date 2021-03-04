@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/head.ejs') %>
+
+
+
+    <body>
+        <%- include('./partials/nav.ejs')%>
+
+            <form class='sign'>
+                <h2>Sign Up</h2>
+                <label for="email">Email</label>
+                <input type="text" name="email" required>
+                <div class="email error"></div>
+                <label for="password">Password</label>
+                <input type="password" name="password" required>
+                <div class="password error"></div>
+                <button>Sign Up</button>
+            </form>
+    </body>
+    <script>
+        console.log('outside')
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log('inside')
+
+            //grab the values
+            const email = form.email.value;  //form.name.value
+            const password = form.password.value;
+
+            console.log(email, password)
+        })
+    </script>
+
+</html>
