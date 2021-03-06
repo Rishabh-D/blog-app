@@ -19,17 +19,48 @@
             </form>
     </body>
     <script>
-        console.log('outside')
+        // console.log('outside')
         const form = document.querySelector('form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            console.log('inside')
+        const emailError = document.querySelector('.email.error')
+        const passwordError = document.querySelector('.password.error')
+
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); //prevents the reloading of the page which is default behavior of html pages
+            // console.log('inside');
+            //reset errors
+            emailError.textContent = "";
+            passwordError.textContent = "";
 
             //grab the values
             const email = form.email.value;  //form.name.value
             const password = form.password.value;
 
             console.log(email, password)
+
+            try {
+                // console.log('lol')
+                const res = await fetch('/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({ 'email': email, 'password': password }),
+                    headers: { 'Content-type': 'application/json' }
+                });
+
+                const data = await res.json()
+                console.log(data)
+                if (data.error) {
+                    emailError.textContent = data.error.email
+                    passwordError.textContent = data.error.password
+
+                }
+                if (data.user) {
+                    location.assign('/');
+                }
+            }
+            catch {
+                console.log(err)
+                console.log('err from html')
+            }
         })
     </script>
 

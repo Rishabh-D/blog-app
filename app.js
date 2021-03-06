@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const blogRoutes = require("./routes/blogRoutes");
 const authRoutes = require("./routes/authRoutes");
+const cookieParser = require("cookie-parser");
 //listening for requests
 port = 8080;
 host = "127.0.0.1";
@@ -14,6 +15,7 @@ app.set("views", "pages");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true })); //to parse data as string/array
 app.use(express.json()); //parse json data as js array
+app.use(cookieParser());
 //connection string for mongoDb
 const dbURI =
   "mongodb+srv://Rishabh:Fg8r42YovE01PZjp@cluster0.9vvbp.mongodb.net/node_finance";
@@ -78,6 +80,12 @@ app.use("/blogs", blogRoutes);
 // all auth routes will be handled by blogRoutes
 console.log("here");
 app.use(authRoutes);
+
+app.get("/set-cookie", (req, res) => {
+  res.cookie("newUser", false);
+  res.cookie("anyData", "No");
+  res.send("sending cookies");
+});
 
 // 404, keep this line at the end always
 app.use((req, res) => {

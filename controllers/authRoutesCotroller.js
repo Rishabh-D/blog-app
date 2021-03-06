@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const signup_get = (req, res) => {
   res.render("signup", { title: "Sign Up" });
@@ -31,6 +32,14 @@ const handleErrors = (err) => {
   }
 };
 
+//creating tokens
+let createToken = (id) => {
+  return jwt.sign({ id }, "secret string signature", {
+    expiresIn: 1 * 24 * 60 * 60,
+  });
+};
+//
+
 const signup_post = (req, res) => {
   // console.log(req.body);
   // res.status(400).send("lol");
@@ -38,7 +47,12 @@ const signup_post = (req, res) => {
   user
     .save()
     .then((result) => {
-      res.status(201).json(user);
+      const token = createToken(user._id);
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        maxAge: 1 * 24 * 60 * 60 * 1000,
+      });
+      res.status(201).json({ user: user._id });
     })
     .catch((err) => {
       console.log("errrr!");
