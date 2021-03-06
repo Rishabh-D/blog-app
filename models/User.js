@@ -33,6 +33,20 @@ userSchema.post("save", function (doc, next) {
   next();
 });
 
+//static method to login user
+userSchema.statics.login = async function (email, password) {
+  const user = await this.findOne({ email: email });
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return user;
+    } else {
+      throw Error("Incorrect password");
+    }
+  }
+  throw Error("Incorrect email");
+};
+
 const User = mongoose.model("users", userSchema); //mongoose will pluralize user to users, make sure db name is users on Atlas
 
 module.exports = User;

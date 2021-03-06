@@ -11,6 +11,20 @@ const handleErrors = (err) => {
     email: "",
     password: "",
   };
+
+  //handelling incorrect email : LOGIN
+  // console.log("dekhte hai");
+  if (err.message === "Incorrect email") {
+    // console.log("hs");
+    error.email = "Email is not registered";
+    console.log("error.email = ", error.email);
+  }
+  //handelling incorrect password : LOGIN
+  if (err.message === "Incorrect password") {
+    error.password = "Password is incorrect";
+    console.log("error.password = ", error.password);
+  }
+
   // console.log(err.errors.email);
   // console.log(err.errors.password);
   // err.errors
@@ -30,6 +44,7 @@ const handleErrors = (err) => {
 
     return error;
   }
+  return error;
 };
 
 //creating tokens
@@ -66,8 +81,36 @@ const login_get = (req, res) => {
   res.render("login", { title: "Login" });
 };
 
-const login_post = (req, res) => {
-  res.send("user login");
+const login_post = async (req, res) => {
+  const { email, password } = req.body;
+  // console.log(email, password);
+
+  try {
+    console.log("TRY BEGIN 1");
+    const user = await User.login(email, password);
+    console.log("TRY BEGIN 2");
+    // res.status(200).json({ user: user._id });
+
+    const token = createToken(user._id);
+    console.log("TRY BEGIN 3");
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 1 * 24 * 60 * 60 * 1000,
+    });
+    console.log("TRY BEGIN 4");
+    res.status(200).json({ user: user._id });
+    console.log("TRY BEGIN 5");
+  } catch (err) {
+    console.log("handelling errors");
+    const error = handleErrors(err);
+    console.log(error);
+    res.status(400).json({ error });
+  }
+};
+
+const logout_get = (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
 };
 
 module.exports = {
@@ -75,4 +118,5 @@ module.exports = {
   login_get,
   signup_post,
   login_post,
+  logout_get,
 };

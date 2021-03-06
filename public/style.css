@@ -22,12 +22,17 @@ ul {
 
 /* nav & footer styles */
 nav {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   margin-bottom: 60px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
   text-transform: uppercase;
+  align-items: flex-end; */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 120px;
 }
 nav ul {
   display: flex;
@@ -37,6 +42,7 @@ nav ul {
 nav li {
   list-style-type: none;
   margin-left: 20px;
+  align-items: flex-end;
 }
 nav h1 {
   font-size: 3em;
@@ -169,4 +175,37 @@ form {
   color: red;
   font-size: 0.8em;
   /* box-shadow: 2px 3px 4px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.btn {
+  border-radius: 4px;
+  padding: 3px;
+  background: crimson;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.log {
+  padding: 3px;
+}
+.log:hover {
+  color: crimson;
+  /* margin-left: 2px; */
+  /* margin-right: 2px; */
+  border-radius: 4px;
+  /* padding: 2px; */
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.logt {
+  padding: 3px;
+}
+.logt:hover {
+  color: crimson;
+  /* margin-left: 2px; */
+  /* margin-right: 2px; */
+  border-radius: 4px;
+  /* padding: 2px; */
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
