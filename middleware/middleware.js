@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 //requireAuth is middleware and we can place it insode any route where we need to check for authentication.
 //if everything is properly verifies, we fire the next() and user can carry out whatever they were doing
@@ -19,4 +20,24 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-module.exports = { requireAuth };
+const checkUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, "secret string signature", async (err, decodedToken) => {
+      if (err) {
+        console.log("lllllll");
+        res.locals.user = null;
+        next();
+      } else {
+        let user = await User.findById(decodedToken.id);
+        res.locals.user = user;
+        next();
+      }
+    });
+  } else {
+    res.locals.user = null;
+    next();
+  }
+};
+
+module.exports = { requireAuth, checkUser };

@@ -13,22 +13,29 @@
                         <%= blog.body %>
                     </p>
                 </div>
-                <a class="delete fa fa-trash" data-doc="<%= blog._id %>"></a>
+                <% if(blog.id==user._id) { %>
+                    <% console.log(blog._id,user.id) %>
+                        <a class="delete fa fa-trash" data-doc="<%= blog._id %>"></a>
+                        <% } else { %>
+                            <% console.log("no match" ,blog.id,user._id) }%>
+
             </div>
 
             <script>
                 const trashcan = document.querySelector('a.delete');
-                trashcan.addEventListener('click', (e) => {
-                    const endpoint = `/blogs/${trashcan.dataset.doc}`;  //id of the blog to be deleted
-                    console.log(endpoint)
+                if (trashcan) {
+                    trashcan.addEventListener('click', (e) => {
+                        const endpoint = `/blogs/${trashcan.dataset.doc}`;  //id of the blog to be deleted
+                        console.log(endpoint)
 
-                    fetch(endpoint, {
-                        method: 'DELETE',
-                    })
-                        .then(response => response.json())
-                        .then(data => window.location.href = data.redirect)
-                        .catch(err => console.log(err));
-                });
+                        fetch(endpoint, {
+                            method: 'DELETE',
+                        })
+                            .then(response => response.json())
+                            .then(data => window.location.href = data.redirect)
+                            .catch(err => console.log(err));
+                    });
+                }
 
             </script>
     </body>

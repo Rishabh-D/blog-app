@@ -1,4 +1,5 @@
 const Blog = require("../models/blog");
+const jwt = require("jsonwebtoken");
 
 const blog_index = (req, res) => {
   Blog.find()
@@ -27,15 +28,31 @@ const blog_create_get = (req, res) => {
 };
 
 const blog_create_post = (req, res) => {
-  const blog = new Blog(req.body);
-  blog
-    .save()
-    .then((result) => {
-      res.redirect("/blogs");
-    })
-    .catch((err) => {
-      console.log(err);
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, "secret string signature", (err, decodedToken) => {
+      if (err) {
+        res.send("Your blog could not be saved. Please login/Sign up.");
+      } else {
+        id = decodedToken.id;
+        // res.body["id"] = id;
+        req.body.id = id;
+        console.log("logging body", req.body);
+        const blog = new Blog(req.body);
+        // console.log("logging blog", blog);
+        blog
+          .save()
+          .then((result) => {
+            res.redirect("/blogs");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     });
+  } else {
+    res.send("Your blog could not be saved. Please login/Sign up.");
+  }
 };
 
 const blog_delete = (req, res) => {

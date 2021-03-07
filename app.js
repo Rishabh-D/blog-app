@@ -4,6 +4,7 @@ const app = express();
 const blogRoutes = require("./routes/blogRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
+const { checkUser } = require("./middleware/middleware.js");
 //listening for requests
 port = 8080;
 host = "127.0.0.1";
@@ -52,6 +53,7 @@ app.get("/add-blog", (req, res) => {
 */
 
 //serving, routing
+app.get("*", checkUser);
 
 app.get("/", (req, res) => {
   //   the directory specified is relative. But node looks for it in the root

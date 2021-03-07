@@ -11,9 +11,17 @@
         <li><a href="/">Blogs</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/blogs/create">New Blog</a></li>
-        <li><a class="logt" href="/logout">Log out</a></li>
-        <li><a class="log" href="/login">Log in</a></li>
-        <li><a class="btn" href="/signup">Sign up</a></li>
+
+        <% if (user){ %>
+
+            <li>Welcome, <%= user.email %>
+            </li>
+            <li><a class="logt" href="/logout">Log out</a></li>
+            <% } else { %>
+
+                <li><a class="log" href="/login">Log in</a></li>
+                <li><a class="btn" href="/signup">Sign up</a></li>
+                <% } %>
 
 
 
