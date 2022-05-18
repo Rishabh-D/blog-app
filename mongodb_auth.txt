@@ -1,5 +1,5 @@
 Rishabh
-Fg8r42YovE01PZjp
+randomString
 mongodb+srv://Rishabh:<password>@cluster0.9vvbp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 we can use mongoDb library to connect to the database with it somrtimes very cumbersome and clunky
