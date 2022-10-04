@@ -21,6 +21,7 @@ const requireAuth = (req, res, next) => {
 };
 
 const checkUser = (req, res, next) => {
+  // "checkuser will run for all routes!!!!!"
   const token = req.cookies.jwt;
   if (token) {
     jwt.verify(token, "secret string signature", async (err, decodedToken) => {

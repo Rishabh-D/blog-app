@@ -1,30 +1,85 @@
+<style>
+    nav {
+        width: 100wh;
+        position: relative;
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    }
+
+    ul {
+        
+        list-style-type: none;
+        padding: 10px; 
+    }
+    ul > li {
+        margin-bottom: 15px;
+        border-bottom: solid red 0.03rem;
+    }
+
+    .site-title{
+        padding:0px;
+        margin: 0px;;
+    }
+    .menu-sd {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    top: 3%;
+    width: 95%;
+}
+    @media all and (max-width:600px){
+        .site-title {
+        font-size: 14px;
+    }
+    .menu{
+        visibility: hidden;
+    }
+     .menu-sd {
+    display: flex;
+    }
+    
+</style>
 <nav>
     <div class='site-title'>
         <a href='/'>
-            <h1 style="display: inline;">Blog Finance</h1>
+            <h1 style="display: inline;" class="'title">Blog</h1>
         </a>
 
 
-        <p>Finance made easy</p>
+        <p>Learn by sharing</p>
     </div>
-    <ul>
-        <li><a href="/">Blogs</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blogs/create">New Blog</a></li>
+    <div class="menu">
+        <ul>
+            <li><a href="/">Blogs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blogs/create">New Blog</a></li>
 
-        <% if (user){ %>
-
-            <li>Welcome, <%= user.email %>
-            </li>
-            <li><a class="logt" href="/logout">Log out</a></li>
+            <% if (user){ %>
+                <li>Welcome, <%= user.email %></li>
+                <li><a class="logt" href="/logout">Log out</a></li>
             <% } else { %>
-
                 <li><a class="log" href="/login">Log in</a></li>
                 <li><a class="btn" href="/signup">Sign up</a></li>
-                <% } %>
-
-
-
-    </ul>
-
+            <% } %>
+        </ul>
+    </div>
 </nav>
+<div class="menu-sd">
+    <div>
+        <ul>
+            <li><a href="/">Blogs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blogs/create">New Blog</a></li>
+
+            <% if (user){ %>
+                <li>Welcome, <%= user.email %>
+                </li>
+                <li><a class="logt" href="/logout">Log out</a></li>
+                <% } else { %>
+                    <li><a class="log" href="/login">Log in</a></li>
+                    <li><a class="btn" href="/signup">Sign up</a></li>
+                    <% } %>
+        </ul>
+    </div>
+</div>

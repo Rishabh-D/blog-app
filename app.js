@@ -38,7 +38,7 @@ mongoose
   .then((result) => {
     //listening for requests
     app.listen(port, host, () => {
-      console.log(`listening at ${host}` + ":\\" + `${port}`);
+      console.log(`listening at ${host}` + ":" + `${port}`);
     });
   })
   .catch((err) => console.log("error connecting to db", err));
@@ -76,7 +76,7 @@ app.get("/", (req, res) => {
   // res.render("index", { title: "Home" });
   res.redirect("/blogs");
 });
-
+console.log("is it re-running everytime a request is made? : NO")
 app.get("/about", (req, res) => {
 
   // render is used for template engine, node already know where to find about.js since u set that in app.set("views", "pages");
