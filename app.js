@@ -6,6 +6,7 @@ const blogRoutes = require("./routes/blogRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 const { checkUser } = require("./middleware/middleware.js");
+
 //listening for requests
 port = 8080;
 host = "127.0.0.1";
@@ -22,8 +23,8 @@ app.set("views", "pages");
 app.use(express.static("public"));
 
 
-app.use(express.urlencoded({ extended: true })); //to parse data as string/array
-app.use(express.json()); //parse json data as js array
+app.use(express.urlencoded({ extended: true })); //to parse form dataa
+app.use(express.json()); //parse json data coming from client and attach it to the req.body
 app.use(cookieParser());
 //connection string for mongoDb
 const dbURI = process.env.DB_URI
@@ -60,7 +61,7 @@ app.get("/add-blog", (req, res) => {
 });
 */
 
-//serving, routing
+// for all routes
 app.get("*", checkUser);
 
 app.get("/", (req, res) => {
@@ -89,8 +90,7 @@ app.get("/about-us", (req, res) => {
 
 // all blog routes will be handled by blogRoutes
 app.use("/blogs", blogRoutes);
-// all auth routes will be handled by blogRoutes
-console.log("here");
+
 app.use(authRoutes);
 
 app.get("/set-cookie", (req, res) => {
