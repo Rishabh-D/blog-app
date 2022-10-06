@@ -13,9 +13,9 @@
                         <%= blog.body %>
                     </p>
                 </div>
-                <% console.log(user) %>
-                <% if(user && blog._id==user.id) { %>
-                    <% console.log(blog._id,user.id) %>
+
+                <% if(user && blog.id == user._id) { %>
+                    <% console.log(blog.id , user._id) %>
                         <a class="delete fa fa-trash" data-doc="<%= blog._id %>"></a>
                         <% } else { %>
                             <% console.log("no user found") }%>

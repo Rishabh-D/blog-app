@@ -5,14 +5,15 @@
         box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
     }
 
+
     ul {
         
         list-style-type: none;
         padding: 10px; 
     }
-    ul > li {
+    .ul > li {
         margin-bottom: 15px;
-        border-bottom: solid red 0.03rem;
+        border-bottom: 1px solid crimson;
     }
 
     .site-title{
@@ -20,26 +21,51 @@
         margin: 0px;;
     }
     .menu-sd {
+        display: none;
+    }
+    .menu-sd-active {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: flex-end; */
+        position: absolute;
+        top: 13%;
+        left:50%;
+        right:20px;
+        width: 95%;
+        background-color:whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+        z-index: 1000;
+}
+.menu-sd-hamburger{
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    position: absolute;
-    top: 3%;
-    width: 95%;
+    
 }
     @media all and (max-width:600px){
         .site-title {
         font-size: 14px;
     }
-    .menu{
-        visibility: hidden;
+        .menu{
+            display: none;
+        }
+        .ul > li {
+            margin-bottom: 15px;
+            
+        }
+
+        .menu-sd-active{
+            display: flex;
+        }
+
+    .menu-sd-hamburger{
+        display: block;
+        bottom: 50%;
     }
-     .menu-sd {
-    display: flex;
-    }
-    
+
+}
 </style>
+
+
 <nav>
     <div class='site-title'>
         <a href='/'>
@@ -52,8 +78,8 @@
     <div class="menu">
         <ul>
             <li><a href="/">Blogs</a></li>
+            <li class="float"><a href="/blogs/create">New Blog</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blog</a></li>
 
             <% if (user){ %>
                 <li>Welcome, <%= user.email %></li>
@@ -64,13 +90,14 @@
             <% } %>
         </ul>
     </div>
+    <div class="menu-sd-hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
 </nav>
 <div class="menu-sd">
     <div>
-        <ul>
+        <ul class="ul">
             <li><a href="/">Blogs</a></li>
-            <li><a href="/about">About</a></li>
             <li><a href="/blogs/create">New Blog</a></li>
+            <li><a href="/about">About</a></li>
 
             <% if (user){ %>
                 <li>Welcome, <%= user.email %>
@@ -83,3 +110,17 @@
         </ul>
     </div>
 </div>
+
+<script>
+    let menu_sd_visible = false
+    const ham = document.querySelector(".menu-sd-hamburger");
+    const menu_sd = document.querySelector(".menu-sd");
+    ham.addEventListener("click",(e)=>{
+        menu_sd_visible = !menu_sd_visible
+        console.log(menu_sd_visible)
+        menu_sd_visible ? menu_sd.classList.add("menu-sd-active") : menu_sd.classList.remove("menu-sd-active")
+        menu_sd_visible ? ham.firstChild.classList.value = "fa fa-times" : ham.firstChild.classList.value = "fa fa-bars"
+    })
+
+    
+</script>
