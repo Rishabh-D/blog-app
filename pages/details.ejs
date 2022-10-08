@@ -13,11 +13,12 @@
                         <%= blog.body %>
                     </p>
                 </div>
-                <% if(blog.id==user._id) { %>
-                    <% console.log(blog._id,user.id) %>
+
+                <% if(user && blog.id == user._id) { %>
+                    <% console.log(blog.id , user._id) %>
                         <a class="delete fa fa-trash" data-doc="<%= blog._id %>"></a>
                         <% } else { %>
-                            <% console.log("no match" ,blog.id,user._id) }%>
+                            <% console.log("no user found") }%>
 
             </div>
 
@@ -25,9 +26,9 @@
                 const trashcan = document.querySelector('a.delete');
                 if (trashcan) {
                     trashcan.addEventListener('click', (e) => {
-                        const endpoint = `/blogs/${trashcan.dataset.doc}`;  //id of the blog to be deleted
+                        const endpoint = `/blogs/${trashcan.dataset.doc}`;  // id of the blog to be deleted
                         console.log(endpoint)
-
+ 
                         fetch(endpoint, {
                             method: 'DELETE',
                         })

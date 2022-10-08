@@ -1,11 +1,9 @@
-Rishabh
-randomString
 mongodb+srv://Rishabh:<password>@cluster0.9vvbp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-we can use mongoDb library to connect to the database with it somrtimes very cumbersome and clunky
-Hence we will be using Mongoose which is an ODM ( object document mapping ) labrary
+we can use mongoDb library to connect to the database but it is very cumbersome and clunky
+Hence we will be using Mongoose which is an ODM ( object document mapping ) library
 In mongoose we define a schema first:
- 	 user schema:                                                                            Blog Schema:
+	  user schema:                           Blog Schema:
 		-name(String) ,required			          -title(string), required
-		-age(number)				          -snippet(string), string
+		-age(number)				          	  -snippet(string), string
 		--bio(string), required			          -body(string), required
