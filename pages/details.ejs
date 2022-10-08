@@ -26,9 +26,9 @@
                 const trashcan = document.querySelector('a.delete');
                 if (trashcan) {
                     trashcan.addEventListener('click', (e) => {
-                        const endpoint = `/blogs/${trashcan.dataset.doc}`;  //id of the blog to be deleted
+                        const endpoint = `/blogs/${trashcan.dataset.doc}`;  // id of the blog to be deleted
                         console.log(endpoint)
-
+ 
                         fetch(endpoint, {
                             method: 'DELETE',
                         })

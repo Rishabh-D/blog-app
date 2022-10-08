@@ -43,23 +43,6 @@ mongoose
   })
   .catch((err) => console.log("error connecting to db", err));
 
-/*
-database:
-app.get("/add-blog", (req, res) => {
-  const blog = new Blog({
-    title: "new blog",
-    snippet: "about my new blog",
-    body: "about my new blog few lines more",
-  });
-
-  blog
-    .save()
-    .then((result) => res.send(result))
-    .catch((err) => {
-      console.log(err);
-    });
-});
-*/
 
 // for all routes
 app.get("*", checkUser);
