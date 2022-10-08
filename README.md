@@ -1,12 +1,12 @@
 # Blog App
 
-Blog app is developed using Nodsjs and ejs template. User van view, add, delete (their own) blogs using this app.
+Blog app is developed using Nodejs and ejs template providing CRUD operations to the client. User can view, add, delete (their own) blogs using this app.
 
 
 ## Screenshots
 
-<img src ="/screenshots/landing_page.png">
-<img src ="/screenshots/login_page.png">
+<img src = "screenshots/landing_page.PNG"  width=800>
+<img src = "screenshots/login_page.PNG" width=800>
 
 ## Run Locally
 
