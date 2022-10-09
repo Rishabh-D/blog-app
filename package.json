@@ -1,33 +1,22 @@
 {
-  "name": "blog_nodejs",
+  "name": "blog-app",
   "version": "1.0.0",
-  "description": "It is a minimalistic blog web application where user can create, delete and post their blogs. It uses Nodejs for server side rendering",
+  "description": "Blog app is developed using Nodejs and ejs template providing CRUD operations to the client. User can view, add, delete (their own) blogs using this app.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Rishabh-D/blog-app.git"
-  },
-  "author": "Rishabh Dubey",
+  "author": "Rishabh",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Rishabh-D/blog-app/issues"
-  },
-  "homepage": "https://github.com/Rishabh-D/blog-app#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.5",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.17",
-    "validator": "^13.5.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
+    "mongoose": "^6.6.5",
+    "validator": "^13.7.0"
   }
 }
