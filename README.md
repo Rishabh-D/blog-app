@@ -2,6 +2,9 @@
 
 Blog app is developed using Nodejs and ejs template providing CRUD operations to the client. User can view, add, delete (their own) blogs using this app.
 
+## Demo
+
+https://blog-nodejs-ejs.herokuapp.com/
 
 ## Screenshots
 
