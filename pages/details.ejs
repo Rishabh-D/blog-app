@@ -1,4 +1,15 @@
 <html lang="en">
+    <style>
+        pre{
+            display: block;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin: 1em 0;
+            /* overflow:auto; */
+           width:auto;
+        }
+    </style>
+
 <%- include("./partials/head.ejs") %>
 
     <body>
@@ -9,9 +20,9 @@
                     <%= blog.title %>
                 </h2>
                 <div class="content">
-                    <p>
+                    <pre>
                         <%= blog.body %>
-                    </p>
+                    </pre>
                 </div>
 
                 <% if(user && blog.id == user._id) { %>
