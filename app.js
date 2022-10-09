@@ -8,8 +8,7 @@ const cookieParser = require("cookie-parser");
 const { checkUser } = require("./middleware/middleware.js");
 
 //listening for requests
-port = 8080;
-host = "127.0.0.1";
+port = process.env.PORT || 3000;
 dotenv.config();
 // registering view engine for express
 
@@ -37,8 +36,8 @@ mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
     //listening for requests
-    app.listen(port, host, () => {
-      console.log(`listening at ${host}` + ":" + `${port}`);
+    app.listen(port, () => {
+      console.log(`listening at ${port}`);
     });
   })
   .catch((err) => console.log("error connecting to db", err));
