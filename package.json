@@ -2,10 +2,13 @@
   "name": "blog-app",
   "version": "1.0.0",
   "description": "Blog app is developed using Nodejs and ejs template providing CRUD operations to the client. User can view, add, delete (their own) blogs using this app.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "15.x"
   },
   "author": "Rishabh",
   "license": "ISC",
