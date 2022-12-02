@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "15.x"
+    "node": "18.x"
   },
   "author": "Rishabh",
   "license": "ISC",
